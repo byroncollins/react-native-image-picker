@@ -99,10 +99,21 @@ const actions: Action[] = [
     title: 'Select Image',
     type: 'library',
     options: {
-      selectionLimit: 0,
       mediaType: 'photo',
+      maxWidth: 400,
+      maxHeight: 400,
+      quality: 0.7,
       includeBase64: false,
-      includeExtra,
+      selectionLimit: 1,
+      presentationStyle: 'fullScreen',
+      ...(Platform.OS === 'ios' && {
+        allowsEditing: true,
+        aspect: [1, 1],
+        allowsMultipleSelection: false,
+        videoQuality: 'high',
+        saveToPhotos: false,
+        includeExtra: true,
+      }),
     },
   },
   {
